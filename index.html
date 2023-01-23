@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<script src="https://cdn.tailwindcss.com"></script>
+	<script defer src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+	<!-- <script src="socket.io/socket.io.js"></script> -->
+	<!-- <script src="server.js"></script> -->
+	<script defer src="index.js"></script>
+	<meta charset="UTF-8">
+	<title>Chat Application</title>
+</head>
+<body>
+	<div class="container items-center text-center justify-center mx-auto text-white mt-4">
+	<div id="chat-box" class="rounded bg-black h-[70vh] overflow-y-scroll">
+	</div>
+<form action="javascript:void(0);" class="flex w-[100%]" id="form">
+		<input type="text" id="msg_inp" autocomplete="off" placeholder="Send Message" class="m-2 p-2 placeholder:text-white text-center rounded p-2 bg-blue-500 w-[100%]"><button type="submit" class="m-2 p-2 bg-green-500 rounded">Send</button>
+</form>
+	</div>
+</body>
+</html>
