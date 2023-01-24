@@ -3,8 +3,9 @@ const socket = io("http://127.0.0.1:9999")
 const form = document.querySelector("#form")
 const chat_box = document.querySelector("#chat-box")
 const msg_inp = document.querySelector("#msg_inp")
+const scroll_to_bottom = document.querySelector("#chat-box");
 
-// Security-Flaw: Null name is able to join the cat fix it
+// Security-Flaw: Null name is able to join the cat fix it and html elements can be injected in chat
 const name = prompt("Enter Your Name: ")
 socket.emit("new-user-joined",name)
 const self_name = document.createElement("div")
@@ -35,6 +36,7 @@ form.addEventListener("submit",()=>{
 	msg(`You: ${msg_inp.value}`,"right");
 	socket.emit("send",msg_inp.value)
 	msg_inp.value=""
+	scroll_to_bottom.scrollTop = scroll_to_bottom.scrollHeight;
 })
 
 socket.on("receive",data => {
