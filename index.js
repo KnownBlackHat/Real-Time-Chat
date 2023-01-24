@@ -6,7 +6,11 @@ const msg_inp = document.querySelector("#msg_inp")
 
 // Security-Flaw: Null name is able to join the cat fix it and html elements can be injected in chat
 const name = prompt("Enter Your Name: ")
-socket.emit("new-user-joined",name)
+const room = prompt("Enter Room TO Join: ")
+socket.emit("new-user-joined",{name: name,room: room})
+
+
+
 const self_name = document.createElement("div")
 self_name.innerText=`Logged In As: ${name}`
 chat_box.append(self_name)
@@ -20,7 +24,7 @@ const msg=(message,position)=>{
 	chat_box.scrollTop = chat_box.scrollHeight;
 }
 
-const warn = (message,color)=>{
+const notify = (message,color)=>{
 const alert_msg = document.createElement("div")
     alert_msg.innerText=message
     alert_msg.classList.add("rounded", color , "p-2", "m-2", "clear-both")
@@ -30,7 +34,7 @@ const alert_msg = document.createElement("div")
 }
 
 socket.on("user-joined",name=>{
-warn(`${name} Joined`,"bg-red-700")
+notify(`${name} Joined`,"bg-red-700")
 })
 
 form.addEventListener("submit",()=>{
@@ -44,5 +48,5 @@ socket.on("receive",data => {
 })
 
 socket.on("user-left",name => {
-warn(`${name} Left`,"bg-yellow-500")
+notify(`${name} Left`,"bg-yellow-500")
 })
