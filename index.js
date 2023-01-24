@@ -17,6 +17,7 @@ const msg=(message,position)=>{
 	new_element.classList.add("rounded", "bg-green-500", `float-${position}`, "p-2", "m-2", "clear-both", "w-fit", "max-w-sm")
 	new_element.innerText=message
 	chat_box.append(new_element)
+	chat_box.scrollTop = chat_box.scrollHeight;
 }
 
 const warn = (message,color)=>{
@@ -24,7 +25,8 @@ const alert_msg = document.createElement("div")
     alert_msg.innerText=message
     alert_msg.classList.add("rounded", color , "p-2", "m-2", "clear-both")
     chat_box.append(alert_msg)
-
+    chat_box.scrollTop = chat_box.scrollHeight;
+	
 }
 
 socket.on("user-joined",name=>{
@@ -35,7 +37,6 @@ form.addEventListener("submit",()=>{
 	msg(`You: ${msg_inp.value}`,"right");
 	socket.emit("send",msg_inp.value)
 	msg_inp.value=""
-	chat_box.scrollTop = chat_box.scrollHeight;
 })
 
 socket.on("receive",data => {
