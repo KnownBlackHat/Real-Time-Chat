@@ -1,9 +1,4 @@
-const cors = require('cors');
-const corsOptions = {
-  origin: 'http://localhost',
-  optionsSuccessStatus: 200 
-};
-const io = require("socket.io")(9999, { cors: corsOptions });
+const io = require("socket.io")(9999, { cors: { origins: ['*'] } }); // Remove * from origin and add your domain only for security reasons
 const users={};
 io.on("connection", socket => {
 
